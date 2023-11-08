@@ -6,9 +6,9 @@
       </div>
       <div class='flex items-center gap-2 text-zinc-900'>
         <NuxtLink to="/" class='rounded px-3 py-1 text-sm'>Home</NuxtLink>
-        <NuxtLink to="/about" class='rounded px-3 py-1 text-sm'>About</NuxtLink>
+        <NuxtLink to="/" class='rounded px-3 py-1 text-sm'>About</NuxtLink>
         <a href='#' class='rounded px-3 py-1 text-sm'>Products</a>
-        <NuxtLink to="/contact" class='rounded px-3 py-1 text-sm'>Contact</NuxtLink>
+        <NuxtLink to="/" class='rounded px-3 py-1 text-sm'>Contact</NuxtLink>
       </div>
     </div>
   </nav>
