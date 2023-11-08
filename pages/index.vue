@@ -56,7 +56,7 @@
                     <span class="h-1 w-44 bg-gray-800"></span>
                 </div>
                 <div class="grid grid-cols-4 gap-6 w-full">
-                    <NuxtLink :to="product.slug" class="w-full" v-for="product in products" :key="product.id">
+                    <NuxtLink :to="`/products/${product.slug}`" class="w-full" v-for="product in products" :key="product.id">
                         <template v-if="product.thumbnail">
                             <img :src="product.thumbnail" alt="" class="w-full object-contain h-60 rounded-xl mb-1" />
                         </template>
@@ -86,7 +86,7 @@
     const products = ref([])
 
     const getAllCategory = async () => {
-        const { data } = await supabase.from('product_category')
+        await supabase.from('product_category')
             .select('id, title, created_at, slug')
             .order('id', { ascending : false})
             .range(0, 3)
@@ -101,7 +101,7 @@
     }
 
     const getFeaturedProduct = async () => {
-        const { data } = await supabase.from('products')
+        await supabase.from('products')
             .select(`
                 id, title, slug, price, images,
                 product_category(
