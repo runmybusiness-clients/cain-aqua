@@ -1,5 +1,5 @@
 <template>
-    <NuxtLink :to="`/products/${product.slug}`" class="w-full" v-for="product in products" :key="product.id">
+    <NuxtLink :prefetch="false" :to="`/products/${product.slug}`" class="w-full" v-for="product in products" :key="product.id">
         <template v-if="product.thumbnail">
             <img :src="product.thumbnail" alt="" class="w-full object-contain h-60 rounded-xl mb-1" />
         </template>

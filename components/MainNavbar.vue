@@ -5,16 +5,16 @@
         <img src="/images/logo.jpeg" alt="cainaqua-logo" class="h-14 w-full object-contain" />
       </div>
       <div class='flex items-center gap-2 text-zinc-900'>
-        <NuxtLink to="/" class='rounded px-3 py-1 text-sm'>Home</NuxtLink>
-        <NuxtLink to="/about" class='rounded px-3 py-1 text-sm'>About</NuxtLink>
-        <NuxtLink to='/products' class='rounded px-3 py-1 text-sm'>Products</NuxtLink>
-        <NuxtLink to="/contact" class='rounded px-3 py-1 text-sm'>Contact</NuxtLink>
+        <NuxtLink :prefetch="false" to="/" class='rounded px-3 py-1 text-sm'>Home</NuxtLink>
+        <NuxtLink :prefetch="false" to="/about" class='rounded px-3 py-1 text-sm'>About</NuxtLink>
+        <NuxtLink :prefetch="false" to='/products' class='rounded px-3 py-1 text-sm'>Products</NuxtLink>
+        <NuxtLink :prefetch="false" to="/contact" class='rounded px-3 py-1 text-sm'>Contact</NuxtLink>
       </div>
     </div>
   </nav>
   <!-- quick nav links -->
   <div class="flex items-center gap-10 justify-center text-sm bg-gray-800  text-gray-100 font-semibold py-2">
-    <NuxtLink 
+    <NuxtLink :prefetch="false" 
       v-for="category in categories" 
       :key="category.id"
       :to="`/category/${category.slug}`" 
@@ -24,10 +24,6 @@
 </template>
 
 <script setup>
-  definePageMeta({
-    colorMode: 'light'
-  })
-
   const supabase = useSupabaseClient();
   
   const { data: categories } = await supabase.from('product_category')

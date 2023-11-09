@@ -4,7 +4,7 @@
             <section class="w-[40%] overflow-hidden">
                 <Carousel id="gallery" :items-to-show="1" :wrap-around="false" v-model="currentSlide" class="border-x border-t">
                     <Slide v-for="slide in product.images" :key="slide">
-                        <img :src="slide" alt="" class="w-full max-h-[50vh]  h-full object-contain">
+                        <img loading="lazy" :src="slide" alt="" class="w-full max-h-[50vh]  h-full object-contain">
                     </Slide>
                 </Carousel>
                 <Carousel
@@ -16,7 +16,7 @@
                 >
                     <Slide v-for="(slide, index) in product.images" :key="slide" class="border">
                         <button class="carousel__item p-2" @click="slideTo(index)">
-                            <img :src="slide" alt="" class="w-16 h-16">
+                            <img loading="lazy" :src="slide" alt="" class="w-16 h-16">
                         </button>
                     </Slide>
                 </Carousel>
@@ -74,12 +74,12 @@
         <section class="mt-12" v-if="relatedproducts === 0">
             <h3>Related Products</h3>
             <div class="grid grid-cols-4 gap-5">
-                <NuxtLink :to="`/products/${product.slug}`" class="w-full" v-for="product in relatedproducts" :key="product.id">
+                <NuxtLink :prefetch="false" :to="`/products/${product.slug}`" class="w-full" v-for="product in relatedproducts" :key="product.id">
                     <template v-if="product.thumbnail">
-                        <img :src="product.thumbnail" alt="" class="w-full object-contain h-60 rounded-xl mb-1" />
+                        <img loading="lazy" :src="product.thumbnail" alt="" class="w-full object-contain h-60 rounded-xl mb-1" />
                     </template>
                     <template v-else>
-                        <img :src="product.images[0]" alt="" class="w-full object-contain h-60 rounded-xl mb-1" />
+                        <img loading="lazy" :src="product.images[0]" alt="" class="w-full object-contain h-60 rounded-xl mb-1" />
                     </template>
                     <div class="px-4 py-2 border border-gray-100 rounded-xl space-y-1">
                         <h3 class="text-zinc-800 font-semibold">{{ product.title }}</h3>
