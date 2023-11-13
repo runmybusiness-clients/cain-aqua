@@ -1,9 +1,9 @@
 <template>
   <nav class='bg-white w-full py-2 border-b border-gray-200'>
     <div class='px-4 flex justify-between max-w-5xl w-full mx-auto'>
-      <div class='logo flex gap-3 items-center'>
+      <NuxtLink to="/" class='logo flex gap-3 items-center'>
         <img src="/images/logo.jpeg" alt="cainaqua-logo" class="h-14 w-full object-contain" />
-      </div>
+      </NuxtLink>
       <div class='flex items-center gap-2 text-zinc-900'>
         <NuxtLink :prefetch="false" to="/" class='rounded px-3 py-1 text-sm'>Home</NuxtLink>
         <NuxtLink :prefetch="false" to="/about" class='rounded px-3 py-1 text-sm'>About</NuxtLink>
@@ -25,10 +25,12 @@
 
 <script setup>
   const supabase = useSupabaseClient();
+  const runtimeConfig = useRuntimeConfig()
   
   const { data: categories } = await supabase.from('product_category')
     .select('id, title, created_at, slug')
     .order('id', { ascending : true})
+    .eq('user_id', runtimeConfig.public.ANON_KEY)
     .range(0, 5)
 
 </script>

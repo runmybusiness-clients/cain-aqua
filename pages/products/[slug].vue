@@ -8,6 +8,7 @@
                     </Slide>
                 </Carousel>
                 <Carousel
+                    v-if="product.images > 1"
                     id="thumbnails"
                     :items-to-show="4"
                     :wrap-around="false"
@@ -37,27 +38,33 @@
                     </h2>
                     <h1 class="text-2xl font-bold mb-1">{{ product.title }}</h1>
                     <h3 class="font-semibold">₹{{ product.price }}</h3>
-                    <p class="mt-3 mb-6">{{ product.short_description }}</p>
 
                     <!-- Basic Details -->
                     <section>
-                        <div class="flex border-x border-y w-[30vw] text-sm rounded-t">
+                        <div class="flex border-x border-y w-[30vw] text-sm rounded-t" v-if="product.product_dimensions">
                             <span class="border-r w-[15vw] px-2 py-2 font-semibold">Dimensions</span>
-                            <span class="px-4 py-2 w-[15vw] text-zinc-600">{{ product.price }}</span>
+                            <span class="px-4 py-2 w-[15vw] text-zinc-600">{{ product.product_dimensions }}</span>
                         </div>
-                        <div class="flex border-x w-[30vw] border-b text-sm">
+                        <div class="flex border-x w-[30vw] border-b text-sm" v-if="product.item_weight">
                             <span class="border-r w-[15vw] px-2 py-2 font-semibold">Product Weight</span>
                             <span class="px-4 py-2 w-[15vw] text-zinc-600">{{ product.item_weight }}</span>
                         </div>
-                        <div class="flex border-x w-[30vw] border-b text-sm">
+                        <div class="flex border-x w-[30vw] border-b text-sm" v-if="product.model_number">
                             <span class="border-r w-[15vw] px-2 py-2 font-semibold">Model Number</span>
                             <span class="px-4 py-2 w-[15vw] text-zinc-600">{{ product.model_number }}</span>
                         </div>
-                        <div class="flex border-x w-[30vw] border-b text-sm rounded-b">
+                        <div class="flex border-x w-[30vw] border-b text-sm rounded-b" v-if="product.color">
                             <span class="border-r w-[15vw] px-2 py-2 font-semibold">Color</span>
                             <span class="px-4 py-2 w-[15vw] text-zinc-600">{{ product.color }}</span>
                         </div>
                     </section>
+
+                    <p class="mt-3 mb-6">{{ product.short_description }}</p>
+                    <!-- Bullet Points -->
+                    <ul class="w-full">
+                        <li v-for="point in product.points">{{ point.item }}</li>
+                    </ul>
+
                 </div>
             </section>
         </section>
@@ -151,6 +158,11 @@
     }
 </script>
 
-<style>
-
+<style scoped>
+    ul{
+        padding-left: 2em;
+    }
+    li{
+        list-style-type: disc;
+    }
 </style>

@@ -81,6 +81,7 @@
     })
 
     const supabase = useSupabaseClient();
+    const runtimeConfig = useRuntimeConfig()
 
     const categories = ref([])
     const products = ref([])
@@ -90,6 +91,7 @@
             .select('id, title, created_at, slug')
             .order('id', { ascending : false})
             .range(0, 3)
+            .eq('user_id', runtimeConfig.public.ANON_KEY)
             .then((res) => {
                 const data = res.data
                 if (data === null) {
